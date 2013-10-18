@@ -49,7 +49,7 @@ namespace Waguu.Web.Controllers
                                         Title = title,
                                         Content = content,//"/Content/images/processing.png",
                                         RawContent = rawContent,//"/Content/images/processing.png",
-                                        RawTags = string.IsNullOrEmpty(tags) ? owner : tags
+                                        RawTags = string.IsNullOrEmpty(tags) ? owner : owner + ";" + tags
                                     }
                                     );
             }

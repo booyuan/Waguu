@@ -1,12 +1,12 @@
 @charset "UTF-8";
-/* line 3, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 3, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 html {
   background-color: #e2e2e2;
   margin: 0;
   padding: 0;
 }
 
-/* line 9, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 9, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 body {
   background-color: #fff;
   border-top: solid 10px #000;
@@ -17,7 +17,7 @@ body {
   padding: 0;
 }
 
-/* line 19, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 19, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 a {
   color: #333333;
   outline: none;
@@ -25,16 +25,16 @@ a {
   padding-right: 3px;
   text-decoration: underline;
 }
-/* line 25, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 25, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 a:link, a:visited, a:active, a:hover {
   color: #333333;
 }
-/* line 28, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 28, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 a:hover {
   background-color: #c7d1d6;
 }
 
-/* line 34, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 34, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #imgLoad {
   position: fixed;
   bottom: 0;
@@ -42,7 +42,7 @@ a:hover {
   display: none;
 }
 
-/* line 42, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 42, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .item {
   width: 330px;
   float: left;
@@ -53,35 +53,35 @@ a:hover {
   box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
 }
 
-/* line 53, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 53, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .col1 {
   width: 330px;
 }
 
-/* line 58, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 58, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 header, footer, hgroup,
 nav, section {
   display: block;
 }
 
-/* line 62, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 62, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 mark {
   background-color: #a6dbed;
   padding-left: 5px;
   padding-right: 5px;
 }
 
-/* line 68, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 68, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .float-left {
   float: left;
 }
 
-/* line 72, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 72, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .float-right {
   float: right;
 }
 
-/* line 76, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 76, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .clear-fix:after {
   content: ".";
   clear: both;
@@ -90,7 +90,7 @@ mark {
   visibility: hidden;
 }
 
-/* line 91, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 91, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 h1, h2, h3,
 h4, h5, h6 {
   color: #000;
@@ -98,32 +98,32 @@ h4, h5, h6 {
   padding-bottom: 0;
 }
 
-/* line 95, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 95, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 h1 {
   font-size: 2em;
 }
 
-/* line 99, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 99, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 h2 {
   font-size: 1.75em;
 }
 
-/* line 103, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 103, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 h3 {
   font-size: 1.2em;
 }
 
-/* line 107, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 107, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 h4 {
   font-size: 1.1em;
 }
 
-/* line 111, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 111, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 h5, h6 {
   font-size: 1em;
 }
 
-/* line 115, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 115, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 h5 a:link, h5 a:visited, h5 a:active {
   padding: 0;
   text-decoration: none;
@@ -131,13 +131,13 @@ h5 a:link, h5 a:visited, h5 a:active {
 
 /* main layout
 ----------------------------------------------------------*/
-/* line 123, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 123, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .content-wrapper {
   margin: 0 auto;
   max-width: 100%;
 }
 
-/* line 128, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 128, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #body {
   background-color: #efeeef;
   clear: both;
@@ -146,7 +146,7 @@ h5 a:link, h5 a:visited, h5 a:active {
   width: 82%;
 }
 
-/* line 136, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 136, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .main-content {
   background: url("../Images/accent.png") no-repeat;
   margin-left: 1%;
@@ -154,17 +154,17 @@ h5 a:link, h5 a:visited, h5 a:active {
   padding-top: 30px;
 }
 
-/* line 143, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 143, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .featured + .main-content {
   background: url("../Images/heroAccent.png") no-repeat;
 }
 
-/* line 147, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 147, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 header .content-wrapper {
   padding-top: 20px;
 }
 
-/* line 151, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 151, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 footer {
   clear: both;
   background-color: #e2e2e2;
@@ -174,7 +174,7 @@ footer {
 
 /* site title
 ----------------------------------------------------------*/
-/* line 161, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 161, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .site-title {
   color: #c8c8c8;
   font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
@@ -182,7 +182,7 @@ footer {
   margin: 0;
 }
 
-/* line 168, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 168, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .site-title a, .site-title a:hover, .site-title a:active {
   background: none;
   color: #c8c8c8;
@@ -192,7 +192,7 @@ footer {
 
 /* login
 ----------------------------------------------------------*/
-/* line 178, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 178, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #login {
   display: block;
   font-size: .85em;
@@ -200,7 +200,7 @@ footer {
   text-align: right;
 }
 
-/* line 185, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 185, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #login a {
   background-color: #d3dce0;
   margin-left: 10px;
@@ -209,7 +209,7 @@ footer {
   text-decoration: none;
 }
 
-/* line 193, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 193, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #login a.username {
   background: none;
   margin: 0;
@@ -217,12 +217,12 @@ footer {
   text-decoration: underline;
 }
 
-/* line 200, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 200, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #login ul {
   margin: 0;
 }
 
-/* line 204, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 204, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #login li {
   display: inline;
   list-style: none;
@@ -230,7 +230,7 @@ footer {
 
 /* menu
 ----------------------------------------------------------*/
-/* line 212, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 212, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ul#menu {
   font-size: 1.3em;
   font-weight: 600;
@@ -239,21 +239,21 @@ ul#menu {
   text-align: right;
 }
 
-/* line 220, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 220, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ul#menu li {
   display: inline;
   list-style: none;
   padding-left: 15px;
 }
 
-/* line 226, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 226, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ul#menu li a {
   background: none;
   color: #999;
   text-decoration: none;
 }
 
-/* line 232, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 232, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ul#menu li a:hover {
   color: #333;
   text-decoration: none;
@@ -262,12 +262,12 @@ ul#menu li a:hover {
 /* page elements
 ----------------------------------------------------------*/
 /* featured */
-/* line 241, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 241, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .featured {
   background-color: #fff;
 }
 
-/* line 245, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 245, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .featured .content-wrapper {
   background-color: #7ac0da;
   background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
@@ -279,35 +279,35 @@ ul#menu li a:hover {
   padding: 20px 40px 30px 40px;
 }
 
-/* line 256, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 256, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .featured hgroup.title h1, .featured hgroup.title h2 {
   color: #fff;
 }
 
-/* line 260, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 260, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .featured p {
   font-size: 1.1em;
 }
 
 /* page titles */
-/* line 265, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 265, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 hgroup.title {
   margin-bottom: 10px;
 }
 
-/* line 269, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 269, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 hgroup.title h1, hgroup.title h2 {
   display: inline;
 }
 
-/* line 273, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 273, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 hgroup.title h2 {
   font-weight: normal;
   margin-left: 3px;
 }
 
 /* features */
-/* line 279, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 279, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 section.feature {
   width: 300px;
   float: left;
@@ -315,131 +315,131 @@ section.feature {
 }
 
 /* ordered list */
-/* line 286, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 286, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round {
   list-style-type: none;
   padding-left: 0;
 }
 
-/* line 291, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 291, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li {
   margin: 25px 0;
   padding-left: 45px;
 }
 
-/* line 296, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 296, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li.zero {
   background: url("../Images/orderedList0.png") no-repeat;
 }
 
-/* line 300, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 300, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li.one {
   background: url("../Images/orderedList1.png") no-repeat;
 }
 
-/* line 304, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 304, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li.two {
   background: url("../Images/orderedList2.png") no-repeat;
 }
 
-/* line 308, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 308, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li.three {
   background: url("../Images/orderedList3.png") no-repeat;
 }
 
-/* line 312, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 312, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li.four {
   background: url("../Images/orderedList4.png") no-repeat;
 }
 
-/* line 316, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 316, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li.five {
   background: url("../Images/orderedList5.png") no-repeat;
 }
 
-/* line 320, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 320, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li.six {
   background: url("../Images/orderedList6.png") no-repeat;
 }
 
-/* line 324, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 324, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li.seven {
   background: url("../Images/orderedList7.png") no-repeat;
 }
 
-/* line 328, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 328, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li.eight {
   background: url("../Images/orderedList8.png") no-repeat;
 }
 
-/* line 332, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 332, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 ol.round li.nine {
   background: url("../Images/orderedList9.png") no-repeat;
 }
 
 /* content */
-/* line 337, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 337, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 article {
   float: left;
   width: 70%;
 }
 
-/* line 342, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 342, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 aside {
   float: right;
   width: 25%;
 }
 
-/* line 347, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 347, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 aside ul {
   list-style: none;
   padding: 0;
 }
 
-/* line 352, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 352, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 aside ul li {
   background: url("../Images/bullet.png") no-repeat 0 50%;
   padding: 2px 0 2px 20px;
 }
 
-/* line 357, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 357, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .label {
   font-weight: 700;
 }
 
 /* login page */
-/* line 362, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 362, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #loginForm {
   border-right: solid 2px #c8c8c8;
   float: left;
   width: 55%;
 }
 
-/* line 368, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 368, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #loginForm .validation-error {
   display: block;
   margin-left: 15px;
 }
 
-/* line 373, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 373, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #loginForm .validation-summary-errors ul {
   margin: 0;
   padding: 0;
 }
 
-/* line 378, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 378, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #loginForm .validation-summary-errors li {
   display: inline;
   list-style: none;
   margin: 0;
 }
 
-/* line 384, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 384, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #loginForm input {
   width: 250px;
 }
 
-/* line 391, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 391, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #loginForm input[type="checkbox"],
 #loginForm input[type="submit"],
 #loginForm input[type="button"],
@@ -447,82 +447,82 @@ aside ul li {
   width: auto;
 }
 
-/* line 395, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 395, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #socialLoginForm {
   margin-left: 40px;
   float: left;
   width: 40%;
 }
 
-/* line 401, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 401, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #socialLoginForm h2 {
   margin-bottom: 5px;
 }
 
-/* line 405, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 405, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #socialLoginList button {
   margin-bottom: 12px;
 }
 
-/* line 409, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 409, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 #logoutForm {
   display: inline;
 }
 
 /* contact */
-/* line 414, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 414, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .contact h3 {
   font-size: 1.2em;
 }
 
-/* line 418, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 418, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .contact p {
   margin: 5px 0 0 10px;
 }
 
-/* line 422, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 422, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .contact iframe {
   border: 1px solid #333;
   margin: 5px 0 0 10px;
 }
 
 /* forms */
-/* line 428, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 428, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 fieldset {
   border: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 434, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 434, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 fieldset legend {
   display: none;
 }
 
-/* line 438, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 438, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 fieldset ol {
   padding: 0;
   list-style: none;
 }
 
-/* line 443, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 443, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 fieldset ol li {
   padding-bottom: 5px;
 }
 
-/* line 447, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 447, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 label {
   display: block;
   font-size: 1.2em;
   font-weight: 600;
 }
 
-/* line 453, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 453, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 label.checkbox {
   display: inline;
 }
 
-/* line 457, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 457, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 input, textarea {
   border: 1px solid #e2e2e2;
   background: #fff;
@@ -533,25 +533,25 @@ input, textarea {
   width: 300px;
 }
 
-/* line 467, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 467, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 textarea {
   font-family: inherit;
   width: 500px;
 }
 
-/* line 472, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 472, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 input:focus, textarea:focus {
   border: 1px solid #7ac0da;
 }
 
-/* line 476, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 476, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 input[type="checkbox"] {
   background: transparent;
   border: inherit;
   width: auto;
 }
 
-/* line 484, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 484, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 input[type="submit"],
 input[type="button"],
 button {
@@ -565,7 +565,7 @@ button {
   width: auto;
 }
 
-/* line 497, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 497, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 td input[type="submit"],
 td input[type="button"],
 td button {
@@ -575,14 +575,14 @@ td button {
 }
 
 /* info and errors */
-/* line 504, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 504, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .message-info {
   border: 1px solid;
   clear: both;
   padding: 10px 20px;
 }
 
-/* line 510, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 510, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .message-error {
   clear: both;
   color: #e80c4d;
@@ -591,7 +591,7 @@ td button {
   margin: 20px 0 10px 0;
 }
 
-/* line 518, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 518, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .message-success {
   color: #7ac0da;
   font-size: 1.3em;
@@ -599,48 +599,48 @@ td button {
   margin: 20px 0 10px 0;
 }
 
-/* line 525, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 525, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .error {
   color: #e80c4d;
 }
 
 /* styles for validation helpers */
-/* line 530, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 530, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .field-validation-error {
   color: #e80c4d;
   font-weight: bold;
 }
 
-/* line 535, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 535, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .field-validation-valid {
   display: none;
 }
 
-/* line 539, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 539, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 input.input-validation-error {
   border: 1px solid #e80c4d;
 }
 
-/* line 543, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 543, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 input[type="checkbox"].input-validation-error {
   border: 0 none;
 }
 
-/* line 547, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 547, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .validation-summary-errors {
   color: #e80c4d;
   font-weight: bold;
   font-size: 1.1em;
 }
 
-/* line 553, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 553, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 .validation-summary-valid {
   display: none;
 }
 
 /* tables
 ----------------------------------------------------------*/
-/* line 560, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 560, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -648,7 +648,7 @@ table {
   border: 0 none;
 }
 
-/* line 567, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 567, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 th {
   font-size: 1.2em;
   text-align: left;
@@ -656,13 +656,13 @@ th {
   padding-left: 0;
 }
 
-/* line 574, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 574, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 th a {
   display: block;
   position: relative;
 }
 
-/* line 579, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 579, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 th a:link, th a:visited, th a:active, th a:hover {
   color: #333;
   font-weight: 600;
@@ -670,17 +670,17 @@ th a:link, th a:visited, th a:active, th a:hover {
   padding: 0;
 }
 
-/* line 586, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 586, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 th a:hover {
   color: #000;
 }
 
-/* line 590, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 590, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 th.asc a, th.desc a {
   margin-right: .75em;
 }
 
-/* line 594, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 594, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 th.asc a:after, th.desc a:after {
   display: block;
   position: absolute;
@@ -689,23 +689,23 @@ th.asc a:after, th.desc a:after {
   font-size: 0.75em;
 }
 
-/* line 602, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 602, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 th.asc a:after {
   content: '▲';
 }
 
-/* line 606, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 606, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 th.desc a:after {
   content: '▼';
 }
 
-/* line 610, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 610, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 td {
   padding: 0.25em 0em 0.25em 0em;
   border: 0 none;
 }
 
-/* line 615, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+/* line 615, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
 tr.pager td {
   padding: 0 0 0 0;
 }
@@ -716,34 +716,34 @@ tr.pager td {
 @media only screen and (max-width: 850px) {
   /* header
   ----------------------------------------------------------*/
-  /* line 628, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 628, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   header .float-left,
   header .float-right {
     float: none;
   }
 
   /* logo */
-  /* line 633, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 633, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   header .site-title {
     margin: 10px;
     text-align: center;
   }
 
   /* login */
-  /* line 639, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 639, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   #login {
     font-size: .85em;
     margin: 0 0 12px;
     text-align: center;
   }
 
-  /* line 645, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 645, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   #login ul {
     margin: 5px 0;
     padding: 0;
   }
 
-  /* line 650, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 650, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   #login li {
     display: inline;
     list-style: none;
@@ -751,7 +751,7 @@ tr.pager td {
     padding: 0;
   }
 
-  /* line 657, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 657, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   #login a {
     background: none;
     color: #999;
@@ -760,25 +760,25 @@ tr.pager td {
     padding: 0;
   }
 
-  /* line 665, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 665, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   #login a:hover {
     color: #333;
   }
 
   /* menu */
-  /* line 670, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 670, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   nav {
     margin-bottom: 5px;
   }
 
-  /* line 674, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 674, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   ul#menu {
     margin: 0;
     padding: 0;
     text-align: center;
   }
 
-  /* line 680, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 680, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   ul#menu li {
     margin: 0;
     padding: 0;
@@ -786,44 +786,44 @@ tr.pager td {
 
   /* main layout
   ----------------------------------------------------------*/
-  /* line 689, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 689, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   .main-content,
   .featured + .main-content {
     background-position: 10px 0;
   }
 
-  /* line 693, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 693, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   .content-wrapper {
     padding-right: 10px;
     padding-left: 10px;
   }
 
-  /* line 698, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 698, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   .featured .content-wrapper {
     padding: 10px;
   }
 
   /* page content */
-  /* line 703, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 703, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   article, aside {
     float: none;
     width: 100%;
   }
 
   /* ordered list */
-  /* line 709, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 709, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   ol.round {
     list-style-type: none;
     padding-left: 0;
   }
 
-  /* line 714, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 714, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   ol.round li {
     padding-left: 10px;
     margin: 25px 0;
   }
 
-  /* line 728, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 728, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   ol.round li.zero,
   ol.round li.one,
   ol.round li.two,
@@ -838,14 +838,14 @@ tr.pager td {
   }
 
   /* features */
-  /* line 733, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 733, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   section.feature {
     float: none;
     padding: 10px;
     width: auto;
   }
 
-  /* line 739, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 739, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   section.feature img {
     color: #999;
     content: attr(alt);
@@ -854,26 +854,26 @@ tr.pager td {
   }
 
   /* forms */
-  /* line 747, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 747, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   input {
     width: 90%;
   }
 
   /* login page */
-  /* line 752, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 752, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   #loginForm {
     border-right: none;
     float: none;
     width: auto;
   }
 
-  /* line 758, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 758, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   #loginForm .validation-error {
     display: block;
     margin-left: 15px;
   }
 
-  /* line 763, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 763, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   #socialLoginForm {
     margin-left: 0;
     float: none;
@@ -882,20 +882,20 @@ tr.pager td {
 
   /* footer
   ----------------------------------------------------------*/
-  /* line 773, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 773, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   footer .float-left,
   footer .float-right {
     float: none;
   }
 
-  /* line 777, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 777, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   footer {
     text-align: center;
     height: auto;
     padding: 10px 0;
   }
 
-  /* line 783, C:/project/GitHub/Checkin/Waguu/Waguu.Web/Content/Site.scss */
+  /* line 783, C:/project/GitHub/Waguu/Waguu/Waguu.Web/Content/Site.scss */
   footer p {
     margin: 0;
   }
