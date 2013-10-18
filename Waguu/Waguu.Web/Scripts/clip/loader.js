@@ -1,0 +1,19 @@
+/// <reference path="../lib/page.ts" />
+/// <reference path="../lib/utils.ts" />
+/// <reference path="../lib/css.ts" />
+/// <reference path="panel.ts" />
+/// <reference path="mode.click.ts" />
+/// <reference path="mode.drag.ts" />
+/// <reference path="mode.select.ts" />
+var loaded;
+var panel = {};
+
+if (!loaded) {
+    loaded = true;
+
+    // load css file we need
+    Waguu.Web.Css.load("clip");
+
+    // create a panel
+    panel = Waguu.Web.Panel.CreatePanel();
+}

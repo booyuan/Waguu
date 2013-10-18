@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <AvailableItemName Include="SassCompile" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Message Text="Compiling Sass files" />
+    <Exec Command="&quot;$(SolutionDir)packages\Ruby.Compass.0.12.2.2\compile.bat&quot; &quot;$(SolutionDir)packages\Ruby.Compass.0.12.2.2\ruby\bin&quot; &quot;$(ProjectDir)Content&quot;" />
+  </Target>
+</Project>

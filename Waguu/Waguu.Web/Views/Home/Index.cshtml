@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<div class="container-narrow">
+    <div class="jumbotron">
+        <h1>Super awesome marketing speak!</h1>
+        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <a class="btn btn-large btn-success" href="#">Sign up today</a>
+    </div>
+
+    <hr>
+
+    <div class="row-fluid marketing">
+        <div class="span6">
+            <h4>Drag This Button To Favoriate</h4>
+            <p><a class="btn btn-large btn-danger" href="javascript:(function () {var bs = 'http://localhost:22128/ld';var d = document;var s = d.createElement('script');s.setAttribute('type', 'text/javascript');s.setAttribute('src', bs);d.getElementsByTagName('body')[0].appendChild(s);})();">Waguu.Web</a></p>
+
+            <h4>Subheading</h4>
+            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+            <h4>Subheading</h4>
+            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+    </div>
+</div>
+<!-- /container -->

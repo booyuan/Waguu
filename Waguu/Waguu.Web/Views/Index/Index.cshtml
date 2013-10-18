@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div id="container" class="transitions-enabled infinite-scroll clearfix">
+    @foreach (var item in Model)
+    {
+        <div class="item col1">
+            <table>
+                <tr>
+                    <td>
+                        <h4><b>@item.Title</b></h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.Raw(System.Web.HttpUtility.HtmlDecode(@item.Content))
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>@item.Description</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+              }
+</div>
+<div id="imgLoad">
+    <img src="http://i.imgur.com/6RMhx.gif" />
+</div>
+
+
+<script>
+          var $container = $('#container');
+
+          $container.imagesLoaded(function () {
+              $container.masonry({
+              // options
+                  itemSelector: '.item',
+                  /*columnWidth: function (containerWidth) {
+                      var nColumn = containerWidth / 310;
+                      return containerWidth / nColumn;
+                  }*/
+                  isAnimated: true,
+                  layoutMode: 'masonry'
+          });
+          });
+
+          var pageNo = 1, pageSize = 20;
+          $(window).scroll(function () {
+              if ($(window).scrollTop() == $(document).height() - $(window).height() && !($('#imgLoad').is(':visible'))) {
+                  loadMore();
+              }
+          });
+
+          function loadMore() {
+              $('#imgLoad').show();
+              $.ajax({
+                  type: "POST",
+                  url: "/api/Document/PostMoreDocuments",
+                  data: JSON.stringify({ pageNo: pageNo + 1, pageSize: pageSize }),
+                  dataType: "json",
+                  contentType: "application/json",
+                  complete: function (response) {
+                      $('#imgLoad').hide();
+                  },
+                  success: function (response) {
+                      if (response.length > 0) {
+                          var ctrls = [];
+                          for (var i = 0; i < response.length; i++) {
+                              var v = '<div class="item col1"><table><tr><td><h4><b>' + response[i].Title + '</b></h4></td></tr><tr><td>' + response[i].Content + '</td></tr><tr><td><p>' + response[i].Description + '</p></td></tr></table></div>';
+                              ctrls.push(v);
+                          }
+                          var $newElems = $(ctrls.join(''));
+                          $container.append($newElems);
+                          //$container.isotope('appended', $newElems, callback);
+                          $newElems.css({ opacity: 0 });
+                          $container.imagesLoaded(function () {
+                              // show elems now they're ready
+                              $newElems.css({ opacity: 1 });
+                              $container.masonry('appended', $newElems, true);
+                             // $container.isotope('appended', $newElems);
+                          });
+                          pageNo++;
+                      }
+                  }
+              });
+          }
+      </script>
+
