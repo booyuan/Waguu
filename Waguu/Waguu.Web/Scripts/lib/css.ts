@@ -2,7 +2,7 @@
 /// <reference path="utils.ts" />
 
 // define CSS utility
-module Waguu.Web {
+module ClipWall {
     export module Css {
         export function load(path: string): void {
             var s = g.ce('link');

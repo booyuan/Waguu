@@ -1,4 +1,4 @@
-module Waguu.Web {
+module ClipWall {
     export class Content {
         // add/remove event names
         public static CADD: string = "addcontent";

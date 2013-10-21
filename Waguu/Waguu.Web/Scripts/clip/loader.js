@@ -12,8 +12,8 @@ if (!loaded) {
     loaded = true;
 
     // load css file we need
-    Waguu.Web.Css.load("clip");
+    ClipWall.Css.load("clip");
 
     // create a panel
-    panel = Waguu.Web.Panel.CreatePanel();
+    panel = ClipWall.Panel.CreatePanel();
 }

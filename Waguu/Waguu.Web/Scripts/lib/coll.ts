@@ -1,5 +1,5 @@
 // define some basic collections
-module Waguu.Web {
+module ClipWall {
     export module c {
         export interface IList<T> {
             add(elem: T);
@@ -10,7 +10,7 @@ module Waguu.Web {
             count: number;
         }
 
-        export class KeyValuePair<T,S> {
+        export class KeyValuePair<T, S> {
             constructor(public key: T, public value: S) { }
         }
 

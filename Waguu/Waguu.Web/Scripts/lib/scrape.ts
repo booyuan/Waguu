@@ -1,6 +1,6 @@
 /// <reference path="utils.ts" />
 
-module Waguu.Web {
+module ClipWall {
     export class Scrape {
         private mouseDown: (e) => any;
         private mouseUp: (e) => any;

@@ -1,5 +1,5 @@
 /// <reference path="content.ts" />
-module Waguu.Web {
+module ClipWall {
     export class Panel {
         private modes: IClipMode[] = [];
         private panel: HTMLElement;
@@ -15,10 +15,11 @@ module Waguu.Web {
             this.panel.innerHTML = "<div id='cnt' class='left'></div>"
             + "<div id='mnu' class='right'>"
             + "<ul>"
-            + "<li class='b_expand' onclick='panel.mc(this);' />"
-            + "<li class='b_pick' onclick='panel.mc(this);' />"
-            + "<li class='b_select' onclick='panel.mc(this);' />"
-            + "<li class='b_login' onclick='panel.mc(this);' />"
+            + "<li class='b_expand' />"
+            + "<li class='b_pick' />"
+            + "<li class='b_select' />"
+            + "<li class='b_login' />"
+            + "<li class='b_submit' />"
             + "</ul>"
             + "</div>";
 
@@ -61,6 +62,7 @@ module Waguu.Web {
                 case "b_pick": this.clickPickMode(); break;
                 case "b_select": this.clickSelectMode(); break;
                 case "b_login": this.clickLogin(); break;
+                case "b_submit": this.clickSubmit(); break;
             }
         }
 
@@ -90,6 +92,21 @@ module Waguu.Web {
         }
 
         private clickLogin(): void {
+        }
+
+        // submit the data to server
+        private clickSubmit(): void {
+            var cnt = g.ge("cnt");
+            var data = {
+                ID: "1",
+                URL: g.w.location.href,
+                SECTIONS: [],
+                IMAGES: [],
+                STYLE: null
+            };
+
+            var postUri = g.h + "post";
+            u.ajax(postUri, u.AjaxMethod.POST, JSON.stringify(data), (res) => { alert(res); }, (fail) => { alert("fail status:" + fail) });
         }
 
         private getMode(name: string): IClipMode {

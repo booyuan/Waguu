@@ -1,4 +1,4 @@
-module Waguu.Web {
+module ClipWall {
     export class Point {
         constructor(public x: number = 0, public y: number = 0) { }
         public static from(me: MouseEvent): Point {

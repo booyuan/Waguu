@@ -1,4 +1,4 @@
-module Waguu.Web {
+module ClipWall {
     // pointer-events:none;
     var greyoutPattern: string = 'top:{0}px;left:{1}px;width:{2}px;height:{3}px';
     // if parameter is empty, create full screen to cover document

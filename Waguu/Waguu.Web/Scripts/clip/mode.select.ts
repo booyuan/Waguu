@@ -1,7 +1,7 @@
 /// <reference path="clip.ts" />
 /// <reference path="../lib/scrape.ts" />
 
-module Waguu.Web {
+module ClipWall {
     export class SelectMode implements IClipMode {
         public static Name: string = "m_sel";
         private scrape: Scrape;

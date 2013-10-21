@@ -5,7 +5,7 @@
 /// <reference path="../lib/coll.ts" />
 /// <reference path="../lib/point.ts" />
 
-module Waguu.Web {
+module ClipWall {
     export class ClickMode implements IClipMode {
         public static Name: string = "m_clk";
         // key is the overlay
@@ -88,7 +88,7 @@ module Waguu.Web {
             // update existing overlay to cover new target
             if (target != this.lastFocus.value && !this.selections.containsValue(target)) {
                 cover(this.lastFocus.key, target);
-                this.lastFocus.value = target;                
+                this.lastFocus.value = target;
             }
         }
 

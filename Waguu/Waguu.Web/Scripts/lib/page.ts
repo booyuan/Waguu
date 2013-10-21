@@ -2,7 +2,7 @@
 declare var window: Window;
 declare var document: Document;
 
-module Waguu.Web {
+module ClipWall {
     // define global variables
     export module g {
         export var d = document;

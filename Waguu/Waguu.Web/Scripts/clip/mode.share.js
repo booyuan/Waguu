@@ -1,57 +1,54 @@
-var Waguu;
-(function (Waguu) {
-    (function (Web) {
-        // pointer-events:none;
-        var greyoutPattern = 'top:{0}px;left:{1}px;width:{2}px;height:{3}px';
+var ClipWall;
+(function (ClipWall) {
+    // pointer-events:none;
+    var greyoutPattern = 'top:{0}px;left:{1}px;width:{2}px;height:{3}px';
 
-        // if parameter is empty, create full screen to cover document
-        function createOverlay(under) {
-            var s = Web.g.ce('div');
-            if (under === Web.g.b) {
-                Web.g.sat(s, 'class', 'greyout');
-            } else {
-                Web.g.sat(s, 'class', 'overlay');
-                cover(s, under);
-                //s.innerHTML = "<p>drag to expand it...</p>";
-            }
-
-            // add identifier to it
-            Web.g.sat(s, "data-cw", "1");
-            Web.g.b.appendChild(s);
-            return s;
+    // if parameter is empty, create full screen to cover document
+    function createOverlay(under) {
+        var s = ClipWall.g.ce('div');
+        if (under === ClipWall.g.b) {
+            ClipWall.g.sat(s, 'class', 'greyout');
+        } else {
+            ClipWall.g.sat(s, 'class', 'overlay');
+            cover(s, under);
+            //s.innerHTML = "<p>drag to expand it...</p>";
         }
-        Web.createOverlay = createOverlay;
 
-        function cover(overlay, under) {
-            var rect = { top: 0, left: 0, width: 0, height: 0 };
-            if (Web.u.valid(under)) {
-                rect = under.getBoundingClientRect();
-            }
+        // add identifier to it
+        ClipWall.g.sat(s, "data-cw", "1");
+        ClipWall.g.b.appendChild(s);
+        return s;
+    }
+    ClipWall.createOverlay = createOverlay;
 
-            Web.g.sat(overlay, 'style', Web.u.format(greyoutPattern, rect.top.toString(), rect.left.toString(), rect.width.toString(), rect.height.toString()));
+    function cover(overlay, under) {
+        var rect = { top: 0, left: 0, width: 0, height: 0 };
+        if (ClipWall.u.valid(under)) {
+            rect = under.getBoundingClientRect();
         }
-        Web.cover = cover;
 
-        function isOverlay(elem) {
-            if (elem) {
-                return Web.g.gat(elem, "data-cw") === "1";
-            }
+        ClipWall.g.sat(overlay, 'style', ClipWall.u.format(greyoutPattern, rect.top.toString(), rect.left.toString(), rect.width.toString(), rect.height.toString()));
+    }
+    ClipWall.cover = cover;
 
-            return false;
+    function isOverlay(elem) {
+        if (elem) {
+            return ClipWall.g.gat(elem, "data-cw") === "1";
         }
-        Web.isOverlay = isOverlay;
 
-        function updateOverlay(elem, x, y, w, h) {
-            if (y !== 0)
-                elem.style.top = (parseInt(elem.style.top) + y) + 'px';
-            if (x !== 0)
-                elem.style.left = (parseInt(elem.style.left) + x) + 'px';
-            if (w !== 0)
-                elem.style.width = (parseInt(elem.style.width) + w) + 'px';
-            if (h !== 0)
-                elem.style.height = (parseInt(elem.style.height) + h) + 'px';
-        }
-        Web.updateOverlay = updateOverlay;
-    })(Waguu.Web || (Waguu.Web = {}));
-    var Web = Waguu.Web;
-})(Waguu || (Waguu = {}));
+        return false;
+    }
+    ClipWall.isOverlay = isOverlay;
+
+    function updateOverlay(elem, x, y, w, h) {
+        if (y !== 0)
+            elem.style.top = (parseInt(elem.style.top) + y) + 'px';
+        if (x !== 0)
+            elem.style.left = (parseInt(elem.style.left) + x) + 'px';
+        if (w !== 0)
+            elem.style.width = (parseInt(elem.style.width) + w) + 'px';
+        if (h !== 0)
+            elem.style.height = (parseInt(elem.style.height) + h) + 'px';
+    }
+    ClipWall.updateOverlay = updateOverlay;
+})(ClipWall || (ClipWall = {}));

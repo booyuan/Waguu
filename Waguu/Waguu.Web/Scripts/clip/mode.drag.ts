@@ -3,7 +3,7 @@
 /// <reference path="../lib/scrape.ts" />
 /// <reference path="../lib/utils.ts" />
 
-module Waguu.Web {
+module ClipWall {
     export class DragMode implements IClipMode {
         public static Name: string = "m_drg";
         private overlays: c.IList<HTMLElement> = new c.List();
