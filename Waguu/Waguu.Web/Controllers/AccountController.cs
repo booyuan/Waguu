@@ -10,6 +10,9 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using Waguu.Web.Filters;
 using Waguu.Web.Models;
+using Waguu.Data;
+using Waguu.Data.Exceptions;
+using Waguu.Data.WindowsAzure;
 
 namespace Waguu.Web.Controllers
 {
@@ -17,6 +20,18 @@ namespace Waguu.Web.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        private IPostRepository repository;
+
+        public AccountController()
+            : this(new PostRepository())
+        {
+        }
+
+        public AccountController(IPostRepository repository)
+        {
+            this.repository = repository;
+        }
+
         //
         // GET: /Account/Login
 
@@ -81,6 +96,7 @@ namespace Waguu.Web.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
+                    this.repository.BootstrapUser(model.UserName, model.UserName);
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)

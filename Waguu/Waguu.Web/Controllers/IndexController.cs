@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Waguu.Web.Models;
 using Waguu.Data;
 using Waguu.Data.WindowsAzure;
+using Microsoft.WindowsAzure.StorageClient;
 
 using System.Net;
 using System.IO;

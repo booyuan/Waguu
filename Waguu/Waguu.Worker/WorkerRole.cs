@@ -98,9 +98,9 @@
                                 success = this.CleanupPost(msg);
                                 break;
 
-                            case Constants.TagCleanupQueue:
+                            case Constants.AlbumCleanupQueue:
                                 Trace.TraceInformation("Starting album removal and metadata cleanup");
-                                success = CleanupTag(msg);
+                                success = CleanupAlbum(msg);
                                 break;
 
                             default:
@@ -119,24 +119,24 @@
             }
         }
 
-        private static bool CleanupTag(CloudQueueMessage msg)
+        private static bool CleanupAlbum(CloudQueueMessage msg)
         {
-            Trace.TraceInformation("CleanupTag called with {0}", msg.AsString);
+            Trace.TraceInformation("CleanupAlbum called with {0}", msg.AsString);
             var parts = msg.AsString.Split('|');
 
             if (parts.Length != 2)
             {
-                Trace.TraceError("Unexpected input to the Tag cleanup queue: {0}", msg.AsString);
+                Trace.TraceError("Unexpected input to the album cleanup queue: {0}", msg.AsString);
                 return false;
             }
 
             // interpret the message
             var owner = parts[0];
-            var tag = parts[1];
+            var album = parts[1];
 
             var repository = new PostRepository();
 
-            var posts = repository.FindPostsByTag(owner, tag);
+            var posts = repository.GetPostsByAlbum(owner, album);
 
             // this will trigger another message to the queue for more scale!
             foreach (var post in posts)
@@ -192,15 +192,16 @@
                 // interpret the string
                 var postid = parts[0];
                 var owner = parts[1];
-                var url = parts[2];
+                var rawContent = parts[2];
                 var rawTags = parts[3];
                 var content = parts[4];
+                var albumId = parts[5];
 
                 // the postRow is already deleted by the frontend to remove from view
                 // now we need to clean the binaries and the tag information
                 var repository = new PostRepository();
 
-                //repository.UpdateAlbumData(owner, albumId, thumbnailUrl);
+                repository.UpdateAlbumData(owner, albumId);
 
                 // this cleans up the tag to post relationship.  we will intentionally not
                 // remove the tag however in here since it doesn't matter
@@ -212,22 +213,28 @@
                 repository.RemoveTags(postid, tags);
 
                 // next, let's remove the blobs from storage
-                var filename = Path.GetFileName(url);
-                var thumbname = Path.Combine("thumb", filename);
 
-                if (!string.IsNullOrEmpty(filename))
+                foreach (Match m in Regex.Matches(rawContent, "<img.+?src=[\"'](.+?)[\"'].+?>", RegexOptions.IgnoreCase))
                 {
-                    Trace.TraceWarning("Attempting to delete {0}", filename);
+                    string url = m.Groups[1].Value;
+                    //var fileName = url.Substring(url.LastIndexOf("/", StringComparison.OrdinalIgnoreCase) + 1);
+                    var filename = Path.GetFileName(url);
+                    var thumbname = Path.Combine("thumb", filename);
 
-                    var client = this.storageAccount.CreateCloudBlobClient();
-                    var container = client.GetContainerReference(owner);
-
-                    var blobGone = container.GetBlobReference(filename).DeleteIfExists();
-                    var thumbGone = container.GetBlobReference(thumbname).DeleteIfExists();
-
-                    if (!blobGone || !thumbGone)
+                    if (!string.IsNullOrEmpty(filename))
                     {
-                        Trace.TraceWarning(string.Format(CultureInfo.InvariantCulture, "Failed to {0}", blobGone ? "Kill Thumb" : thumbGone ? "Kill both" : "Kill blob"));
+                        Trace.TraceWarning("Attempting to delete {0}", filename);
+
+                        var client = this.storageAccount.CreateCloudBlobClient();
+                        var container = client.GetContainerReference(owner);
+
+                        var blobGone = container.GetBlobReference(filename).DeleteIfExists();
+                        var thumbGone = container.GetBlobReference(thumbname).DeleteIfExists();
+
+                        if (!blobGone || !thumbGone)
+                        {
+                            Trace.TraceWarning(string.Format(CultureInfo.InvariantCulture, "Failed to {0}", blobGone ? "Kill Thumb" : thumbGone ? "Kill both" : "Kill blob"));
+                        }
                     }
                 }
             }
@@ -246,7 +253,7 @@
             Trace.TraceInformation("Create post called with {0}", msg.AsString);
             var parts = msg.AsString.Split('|');
 
-            if (parts.Length != 5)
+            if (parts.Length != 6)
             {
                 Trace.TraceError("Unexpected input to the post cleanup queue: {0}", msg.AsString);
                 return false;
@@ -254,13 +261,14 @@
 
             // interpret the string
             var owner = parts[0];
-            var postid = parts[1];
-            var source = parts[2];
-            var content = parts[3];
-            var rawContent = parts[4];
+            var albumName = parts[1];
+            var postid = parts[2];
+            var source = parts[3];
+            var content = parts[4];
+            var rawContent = parts[5];
 
             var repository = new PostRepository();
-            var post = repository.GetPostByOwner(owner, postid);
+            var post = repository.GetPostByOwner(owner, albumName, postid);
 
             if (post != null)
             {
@@ -271,7 +279,7 @@
                 }
                 catch (Exception ex)
                 {
-                    // creating the thumbnail failed for some reason
+                    // Process post failed for some reason
                     Trace.TraceError("Process Post failed for {0} and {1}", owner, postid);
                     Trace.TraceError(ex.ToString());
 
@@ -283,6 +291,20 @@
                 post.RawContent = rawContent;
 
                 repository.UpdatePostData(post);
+
+                var album = repository.GetAlbumsByOwner(owner).Single(a => a.AlbumId == albumName);
+                if (!album.HasPosts/* || string.IsNullOrEmpty(album.ThumbnailUrl)*/)
+                {
+                    // update the album
+                    album.HasPosts = true;
+                    if (String.IsNullOrEmpty(album.Description))
+                    {
+                        album.Description = post.Title;  //TODO: find something reasonable to assign as description
+                    }
+                    //album.Description = String.Empty;//post.ThumbnailUrl;
+
+                    repository.UpdateAlbum(album);
+                }
 
                 // parse the tags and save them off
                 var tags = post.RawTags.Split(';')
@@ -306,16 +328,19 @@
             var client = this.storageAccount.CreateCloudBlobClient();
             var container = client.GetContainerReference(owner);
 
-            string file = Regex.Match(content, "<img.+?src=[\"'](.+?)[\"'].+?>", RegexOptions.IgnoreCase).Groups[1].Value;
-            var fileName = file.Substring(file.LastIndexOf("/", StringComparison.OrdinalIgnoreCase) + 1);
+            foreach (Match m in Regex.Matches(content, "<img.+?src=[\"'](.+?)[\"'].+?>", RegexOptions.IgnoreCase))
+            {
+                string file = m.Groups[1].Value;
+                var fileName = file.Substring(file.LastIndexOf("/", StringComparison.OrdinalIgnoreCase) + 1);
 
-            SaveImage(container, file);
+                SaveImage(container, file);
 
-            var blobUri = client.GetContainerReference(owner).GetBlobReference(fileName).Uri.ToString();
-            var thumbUri = client.GetContainerReference(owner).GetBlobReference(Path.Combine("thumb", fileName)).Uri.ToString();
+                var blobUri = client.GetContainerReference(owner).GetBlobReference(fileName).Uri.ToString();
+                var thumbUri = client.GetContainerReference(owner).GetBlobReference(Path.Combine("thumb", fileName)).Uri.ToString();
 
-            content = content.Replace(file, thumbUri);
-            rawContent = content.Replace(file, blobUri);
+                content = content.Replace(file, thumbUri);
+                rawContent = content.Replace(file, blobUri);
+            }
             
         }
 

@@ -23,20 +23,21 @@ namespace Waguu.Web.Controllers
         public void CreatePost()
         {
             string albumName = String.Empty;
-            string description = "test data 1";
-            string owner = "boyuan";
-            string id = DateTime.Now.Ticks.ToString();
-            string source = "http://www.telegraph.co.uk/travel/travel-advice/9305570/What-should-I-see-and-do-in-Nice.html";
-            string title = "What should I see and do in Nice?";
-            string content = "Nice in June is an excellent idea. The weather should be just right. As a first step to planning your break, perhaps you would like to have a look at my guide to Nice. <img src=\"http://i.telegraph.co.uk/multimedia/archive/02236/advice-nice_2236594b.jpg\"/> You will find there details of my favourite hotels, restaurants and attractions, as well as suggestions for driving itineraries.";
+            string description = "test data 5";
+            string owner = "yyy";
+            string id = string.Format("{0:D19}", DateTime.MaxValue.Ticks - DateTime.UtcNow.Ticks);;
+            string source = "http://giphy.com/gifs/RwnoM2uvfwqcw/";
+            string title = "Delicious recipes";
+            string content = "Delicious recipes. <img src=\"http://images4.fanpop.com/image/photos/23400000/Food-delicious-recipes-23444870-1600-1200.jpg\"/> go go. Another one <img src=\"http://upload.wikimedia.org/wikipedia/commons/6/62/Korean_food-Bibim_ssambap_and_various_banchan-01.jpg\"/>";
             string rawContent = content;
-            string tags = String.Empty;
+            string tags = "food;recipes";
 
             try
             {
                 this.repository.Add(
                                     new Post()
                                     {
+                                        AlbumId = albumName,
                                         Description = description,
                                         Owner = owner,
                                         PostId = id,

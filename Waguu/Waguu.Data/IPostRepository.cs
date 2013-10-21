@@ -5,15 +5,15 @@
 
     public interface IPostRepository
     {
-        //IEnumerable<Post> GetPostsByAlbum(string owner, string albumId);
-
         IEnumerable<Post> GetAllPosts();
 
-        Post GetPostByOwner(string owner, string postId);
+        IEnumerable<Post> GetPostsByAlbum(string owner, string albumId);
+
+        Post GetPostByOwner(string owner, string albumId, string postId);
 
         void Add(Post post);
         
-        void Delete(string owner, string postId);
+        void Delete(string owner, string album, string postId);
         
         void UpdatePostData(Post post);
         
@@ -21,18 +21,18 @@
         
         void RemoveTags(string postId, Tag[] tags);
 
-        //IEnumerable<Album> GetAlbums();
+        IEnumerable<Album> GetAlbums();
         
-        //IEnumerable<Album> GetAlbumsByOwner(string owner);
+        IEnumerable<Album> GetAlbumsByOwner(string owner);
 
-        //void CreateAlbum(string albumName, string owner);
+        void CreateAlbum(string albumName, string owner);
         
-        //void DeleteAlbum(string albumName, string owner);
+        void DeleteAlbum(string albumName, string owner);
         
-        //void UpdateAlbum(Album album);
+        void UpdateAlbum(Album album);
 
         IEnumerable<Post> FindPostsByTag(params string[] tags);
 
-        void BootstrapUser(string userName);
+        void BootstrapUser(string userName, string albumName);
     }
 }

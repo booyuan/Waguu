@@ -6,8 +6,9 @@ namespace Waguu.Data.WindowsAzure
     using Microsoft.WindowsAzure;
     using Microsoft.WindowsAzure.StorageClient;
 
-    public class PostDataContext : TableServiceContext
+    public class PostAlbumDataContext : TableServiceContext
     {
+        public const string AlbumTable = "Albums";
         public const string PostTable = "Posts";
         public const string TagTable = "Tags";
         public const string PostTagTable = "PostTags";
@@ -17,12 +18,12 @@ namespace Waguu.Data.WindowsAzure
 
         private Dictionary<string, Type> resolverTypes;
 
-        public PostDataContext()
+        public PostAlbumDataContext()
             : this(CloudStorageAccount.FromConfigurationSetting("DataConnectionString"))
         {
         }
 
-        public PostDataContext(Microsoft.WindowsAzure.CloudStorageAccount account)
+        public PostAlbumDataContext(Microsoft.WindowsAzure.CloudStorageAccount account)
             : base(account.TableEndpoint.ToString(), account.Credentials)
         {
             if (!initialized)
@@ -40,6 +41,7 @@ namespace Waguu.Data.WindowsAzure
             // we are setting up a dictionary of types to resolve in order
             // to workaround a performance bug during serialization
             this.resolverTypes = new Dictionary<string, Type>();
+            this.resolverTypes.Add(AlbumTable, typeof(AlbumRow));
             this.resolverTypes.Add(PostTable, typeof(PostRow));
             this.resolverTypes.Add(TagTable, typeof(TagRow));
             this.resolverTypes.Add(PostTagTable, typeof(PostTagRow));
@@ -54,6 +56,14 @@ namespace Waguu.Data.WindowsAzure
 
                 return null;
             };
+        }
+
+        public IQueryable<AlbumRow> Albums
+        {
+            get
+            {
+                return this.CreateQuery<AlbumRow>(AlbumTable);
+            }
         }
 
         public IQueryable<PostRow> Posts
@@ -87,7 +97,7 @@ namespace Waguu.Data.WindowsAzure
 
         public void CreateTables()
         {
-            TableStorageExtensionMethods.CreateTablesFromModel(typeof(PostDataContext), this.BaseUri.AbsoluteUri, this.StorageCredentials);
+            TableStorageExtensionMethods.CreateTablesFromModel(typeof(PostAlbumDataContext), this.BaseUri.AbsoluteUri, this.StorageCredentials);
         }
     }
 }
