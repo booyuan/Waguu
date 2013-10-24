@@ -14,6 +14,8 @@
 
         public string Content { get; set; }
 
+        public string AlbumId { get; set; }
+
         public string Owner { get; set; }
 
         public string RawTags { get; set; }

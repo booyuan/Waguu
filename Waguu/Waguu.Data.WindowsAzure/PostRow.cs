@@ -12,12 +12,13 @@
         }
 
         public PostRow(Post post)
-            : base(string.Format(CultureInfo.InvariantCulture, "{0}", post.Owner), post.PostId)
+            : base(string.Format(CultureInfo.InvariantCulture, "{0}_{1}", post.Owner, post.AlbumId), post.PostId)
         {
             this.PostId = post.PostId;
             this.Owner = post.Owner;
             this.Title = post.Title;
             this.Description = post.Description;
+            this.AlbumId = post.AlbumId;
             this.RawTags = post.RawTags;
             this.Content = post.Content;
             this.RawContent = post.RawContent;
@@ -37,6 +38,8 @@
         public string RawContent { get; set; }
         
         public string Content { get; set; }
+        
+        public string AlbumId { get; set; }
         
         public string Owner { get; set; }
         

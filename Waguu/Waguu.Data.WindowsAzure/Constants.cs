@@ -4,6 +4,6 @@
     {
         public const string PostQueue = "posts";
         public const string PostCleanupQueue = "purgepost";
-        public const string TagCleanupQueue = "purgetag";
+        public const string AlbumCleanupQueue = "purgealbum";
     }
 }

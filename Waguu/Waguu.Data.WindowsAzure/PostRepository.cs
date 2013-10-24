@@ -31,20 +31,36 @@
 
         public IEnumerable<Post> GetAllPosts()
         {
-            var context = new PostDataContext();
+            var context = new PostAlbumDataContext();
+
+            var query = context.Posts.AsTableServiceQuery();
 
             // we add the 'true' predicate in order to not get 404 if post is missing (we just want a null)
-            return context.Posts.AsTableServiceQuery()
+            return query
                 .AsEnumerable()
                 .ToModel();
         }
 
-        public Post GetPostByOwner(string owner, string postId)
+        public IEnumerable<Post> GetPostsByAlbum(string owner, string albumId)
         {
-            var context = new PostDataContext();
+            var context = new PostAlbumDataContext();
 
             // use this partial one to correctly construct partition keys
-            var temp = new PostRow(new Post { Owner = owner.ToLowerInvariant(), PostId = postId });
+            var temp = new PostRow(new Post { Owner = owner.ToLowerInvariant(), AlbumId = albumId });
+
+            return context.Posts.Where(p => p.PartitionKey == temp.PartitionKey).AsTableServiceQuery()
+                .AsEnumerable()
+                .ToModel();
+
+            // TODO: Handle Paging
+        }
+
+        public Post GetPostByOwner(string owner, string albumId, string postId)
+        {
+            var context = new PostAlbumDataContext();
+
+            // use this partial one to correctly construct partition keys
+            var temp = new PostRow(new Post { Owner = owner.ToLowerInvariant(), AlbumId = albumId, PostId = postId });
 
             // we add the 'true' predicate in order to not get 404 if post is missing (we just want a null)
             return context.Posts.Where(p => p.PartitionKey == temp.PartitionKey && p.RowKey == temp.RowKey && true).AsTableServiceQuery()
@@ -58,19 +74,24 @@
             // get just the file name and ignore the path
             //var file = name.Substring(name.LastIndexOf("\\", StringComparison.OrdinalIgnoreCase) + 1);
 
-            var context = new PostDataContext();
+            var context = new PostAlbumDataContext();
+
+            if (string.IsNullOrEmpty(post.AlbumId))
+            {
+                post.AlbumId = post.Owner;
+            }
 
             try
             {
                 // add the post to table storage
-                context.AddObject(PostDataContext.PostTable, new PostRow(post));
+                context.AddObject(PostAlbumDataContext.PostTable, new PostRow(post));
                 context.SaveChanges();
             }
             catch (Exception ex)
             {
                 if (ex.ToString().Contains("EntityAlreadyExists"))
                 {
-                    throw new PostNameAlreadyInUseException(post.Owner, post.Title);
+                    throw new PostNameAlreadyInUseException(post.AlbumId, post.Title);
                 }
                 else
                 {
@@ -78,29 +99,73 @@
                 }
             }
 
+            // add the binary to blob storage
+           /* var storage = this.storageAccount.CreateCloudBlobClient();
+            var container = storage.GetContainerReference(post.Owner.ToLowerInvariant());
+            container.CreateIfNotExist();
+            container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+            var blob = container.GetBlobReference(file);
+
+            blob.Properties.ContentType = mimeType;
+            blob.UploadFromStream(binary);*/
+
             // post a message to the queue so it can process tags and the sizing operations
             this.SendToQueue(
                 Constants.PostQueue,
-                string.Format(CultureInfo.InvariantCulture, "{0}|{1}|{2}|{3}|{4}", post.Owner, post.PostId, post.Source, post.Content, post.RawContent));
+                string.Format(CultureInfo.InvariantCulture, "{0}|{1}|{2}|{3}|{4}|{5}", post.Owner, post.AlbumId, post.PostId, post.Source, post.Content, post.RawContent));
         }
 
         public void UpdatePostData(Post post)
         {
-            var context = new PostDataContext();
+            var context = new PostAlbumDataContext();
             var postRow = new PostRow(post);
 
             // attach and update the post row
-            context.AttachTo(PostDataContext.PostTable, postRow, "*");
+            context.AttachTo(PostAlbumDataContext.PostTable, postRow, "*");
             context.UpdateObject(postRow);
             context.SaveChanges();
         }
 
-        public void Delete(string owner, string postId)
+        public void UpdateAlbumData(string owner, string albumId)
         {
-            var context = new PostDataContext();
+            var context = new PostAlbumDataContext();
+
+            var albumRow = new AlbumRow(new Album() { AlbumId = albumId, Owner = owner });
+            var album = context.Albums.Where(a => a.PartitionKey == albumRow.PartitionKey && a.RowKey == albumRow.RowKey)
+                .AsTableServiceQuery()
+                .FirstOrDefault();
+
+            if (album != null)
+            {
+                // get the first the post in the album to update the thumbnail
+                var postRow = new PostRow(new Post { Owner = owner.ToLowerInvariant(), AlbumId = albumId });
+                var otherPost = context.Posts.Where(p => p.PartitionKey == postRow.PartitionKey).Take(1).SingleOrDefault();
+
+                // if the album is empty, we set the HasPosts property to false to hide it from the UI
+              /*  if (!String.IsNullOrEmpty(description))
+                {
+                    album.Description = description; //TODO: find something reasonable to assign as description
+                }
+                else
+                {
+                    album.Description = String.Empty;
+                }*/
+
+                if (otherPost == null)
+                {
+                    album.HasPosts = false;
+                }
+
+                this.UpdateAlbum(album.ToModel());
+            }
+        }
+
+        public void Delete(string owner, string album, string postId)
+        {
+            var context = new PostAlbumDataContext();
 
             // we use this to help calculate partition keys, rowkeys in query later
-            var temp = new PostRow(new Post { PostId = postId, Owner = owner.ToLowerInvariant() });
+            var temp = new PostRow(new Post { PostId = postId, AlbumId = album, Owner = owner.ToLowerInvariant() });
 
             // see if the post exists
             var post = context.Posts.Where(p => p.PartitionKey == temp.PartitionKey && p.RowKey == temp.RowKey && true).AsTableServiceQuery()
@@ -115,28 +180,28 @@
 
         public void Delete(Post post)
         {
-            var context = new PostDataContext();
+            var context = new PostAlbumDataContext();
             var postRow = new PostRow(post);
 
-            context.AttachTo(PostDataContext.PostTable, postRow, "*");
+            context.AttachTo(PostAlbumDataContext.PostTable, postRow, "*");
             context.DeleteObject(postRow);
             context.SaveChanges();
 
             // tell the worker role to clean up blobs and tags
             this.SendToQueue(
                 Constants.PostCleanupQueue,
-                string.Format(CultureInfo.InvariantCulture, "{0}|{1}|{2}|{3}|{4}|{5}", post.PostId, post.Owner, post.RawContent, post.RawTags, post.Content));
+                string.Format(CultureInfo.InvariantCulture, "{0}|{1}|{2}|{3}|{4}|{5}", post.PostId, post.Owner, post.RawContent, post.RawTags, post.Content, post.AlbumId));
         }
 
         public void CreateTags(string postId, Tag[] tags)
         {
-            var context = new PostDataContext();
+            var context = new PostAlbumDataContext();
 
             foreach (var tag in tags)
             {
                 // add the tag and associate to a picture for later searching
-                context.AddObject(PostDataContext.TagTable, new TagRow(tag));
-                context.AddObject(PostDataContext.PostTagTable, new PostTagRow(postId, tag.Name));
+                context.AddObject(PostAlbumDataContext.TagTable, new TagRow(tag));
+                context.AddObject(PostAlbumDataContext.PostTagTable, new PostTagRow(postId, tag.Name));
             }
 
             try
@@ -163,12 +228,12 @@
 
         public void RemoveTags(string postId, Tag[] tags)
         {
-            var context = new PostDataContext();
+            var context = new PostAlbumDataContext();
 
             foreach (var tag in tags)
             {
                 var postTag = new PostTagRow(postId, tag.Name);
-                context.AttachTo(PostDataContext.PostTagTable, postTag, "*");
+                context.AttachTo(PostAlbumDataContext.PostTagTable, postTag, "*");
                 context.DeleteObject(postTag);
             }
 
@@ -193,9 +258,74 @@
             }
         }
 
+        public IEnumerable<Album> GetAlbums()
+        {
+            var context = new PostAlbumDataContext();
+
+            return context.Albums.AsTableServiceQuery()
+                .AsEnumerable()
+                .ToModel();
+        }
+
+        public IEnumerable<Album> GetAlbumsByOwner(string owner)
+        {
+            var context = new PostAlbumDataContext();
+
+            return context.Albums.Where(a => a.PartitionKey == owner).AsTableServiceQuery()
+                .AsEnumerable()
+                .ToModel();
+
+            // TODO:  Implement paging
+        }
+
+        public void CreateAlbum(string albumName, string owner)
+        {
+            var context = new PostAlbumDataContext();
+
+            var album = new Album
+            {
+                AlbumId = SlugHelper.GetSlug(albumName),
+                Owner = owner.ToLowerInvariant(),
+                Title = albumName
+            };
+
+            context.AddObject(PostAlbumDataContext.AlbumTable, new AlbumRow(album));
+            context.SaveChanges();
+        }
+
+        public void DeleteAlbum(string albumName, string owner)
+        {
+            var context = new PostAlbumDataContext();
+
+            // find the album by name and owner (we don't pass in ugly GUIDs for direct access
+            var album = context.Albums
+                .Where(a => a.AlbumId == albumName && a.PartitionKey == owner.ToLowerInvariant()).AsTableServiceQuery()
+                .Single();
+
+            context.DeleteObject(album);
+            context.SaveChanges();
+
+            // tell the worker role to clean up blobs and tags
+            this.SendToQueue(
+                Constants.AlbumCleanupQueue,
+                string.Format(CultureInfo.InvariantCulture, "{0}|{1}", owner, album.AlbumId));
+        }
+
+        public void UpdateAlbum(Album album)
+        {
+            var context = new PostAlbumDataContext();
+            var albumRow = new AlbumRow(album);
+
+            // attach and update the post row
+            context.AttachTo(PostAlbumDataContext.AlbumTable, albumRow, "*");
+            context.UpdateObject(albumRow);
+
+            context.SaveChanges();
+        }
+
         public IEnumerable<Post> FindPostsByTag(params string[] tags)
         {
-            var context = new PostDataContext();
+            var context = new PostAlbumDataContext();
 
             // we have to dynamically build our query using an Expression tree
             Expression<Func<PostTagRow, bool>> search = null;
@@ -251,10 +381,10 @@
             return (new Post[] { }).AsEnumerable();
         }
 
-        public void BootstrapUser(string userName)
+        public void BootstrapUser(string userName, string albumName)
         {
             // create the initial album for the user
-            //this.CreateAlbum(albumName, userName.ToLowerInvariant());
+            this.CreateAlbum(albumName, userName.ToLowerInvariant());
 
             // provision a container for the user's blobs
             var client = this.storageAccount.CreateCloudBlobClient();
