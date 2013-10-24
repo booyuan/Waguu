@@ -20,8 +20,6 @@
         
         void RemoveTags(string postId, Tag[] tags);
 
-<<<<<<< HEAD
-=======
         IEnumerable<Album> GetAlbums();
         
         IEnumerable<Album> GetAlbumsByOwner(string owner);
@@ -32,7 +30,6 @@
         
         void UpdateAlbum(Album album);
 
->>>>>>> 455442cd3ddabad9c46530550626179a3966a59c
         IEnumerable<Post> FindPostsByTag(params string[] tags);
 
         void BootstrapUser(string userName, string albumName);

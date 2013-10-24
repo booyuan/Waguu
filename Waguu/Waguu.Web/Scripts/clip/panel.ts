@@ -105,7 +105,7 @@ module ClipWall {
                 STYLE: null
             };
 
-            var postUri = g.h + "api/clip/add";
+            var postUri = g.h + "api/clip/post";
             u.ajax(postUri, u.AjaxMethod.POST, JSON.stringify(data), (res) => { alert(res); }, (fail) => { alert("fail status:" + fail) });
         }
 
