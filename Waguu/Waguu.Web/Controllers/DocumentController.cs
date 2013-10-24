@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using Waguu.Web.Models;
+﻿/**
+ * copyright @ waguu.com 2013 
+ */
 
 namespace Waguu.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Web.Http;
+    using Waguu.Web.Models;
+
     public class DocumentController : ApiController
     {
-        public IEnumerable<Document> PostMoreDocuments()
+        [HttpGet]
+        public IEnumerable<Document> More(int pageNo, int pagesize = 20)
         {
             //return DocumentRepository.GetData(pageNo, pageSize);
-            return DocumentRepository.GetData(1, 20);
+            return DocumentRepository.GetData(pageNo, pagesize);
         }
     }
 }

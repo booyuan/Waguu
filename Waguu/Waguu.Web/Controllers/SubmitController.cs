@@ -1,11 +1,17 @@
-﻿using System;
-using System.Web.Http;
-using Waguu.Data;
-using Waguu.Data.Exceptions;
-using Waguu.Data.WindowsAzure;
+﻿/**
+ * copyright @ waguu.com 2013 
+ */
 
 namespace Waguu.Web.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+    using Waguu.Data;
+    using Waguu.Data.Exceptions;
+    using Waguu.Data.WindowsAzure;
+
     public class SubmitController : ApiController
     {
         private IPostRepository repository;
@@ -20,9 +26,9 @@ namespace Waguu.Web.Controllers
             this.repository = repository;
         }
 
-        public void CreatePost()
+        [HttpGet]
+        public HttpResponseMessage CreatePost()
         {
-            string albumName = String.Empty;
             string description = "test data 1";
             string owner = "boyuan";
             string id = DateTime.Now.Ticks.ToString();
@@ -53,6 +59,11 @@ namespace Waguu.Web.Controllers
                 ModelState.AddModelError("Title", "A post with the same name already exists on this album");
                 //var albums = this.repository.GetAlbumsByOwner(User.Identity.Name.ToLowerInvariant());
             }
+
+            return new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.OK
+            };
         }
     }
 }

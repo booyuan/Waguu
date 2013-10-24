@@ -107,7 +107,7 @@ var ClipWall;
                 STYLE: null
             };
 
-            var postUri = ClipWall.g.h + "post";
+            var postUri = ClipWall.g.h + "api/clip/add";
             ClipWall.u.ajax(postUri, ClipWall.u.AjaxMethod.POST, JSON.stringify(data), function (res) {
                 alert(res);
             }, function (fail) {

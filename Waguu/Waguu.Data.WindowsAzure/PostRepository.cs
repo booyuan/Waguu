@@ -5,11 +5,9 @@
     using System.Data.Services.Client;
     using System.Diagnostics;
     using System.Globalization;
-    using System.IO;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Net;
-    using System.Xml.Linq;
     using Microsoft.WindowsAzure;
     using Microsoft.WindowsAzure.StorageClient;
     using Waguu.Data;

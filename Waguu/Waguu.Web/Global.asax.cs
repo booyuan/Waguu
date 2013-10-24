@@ -1,4 +1,11 @@
-﻿namespace Waguu.Web
+﻿/**
+ * copyright @ waguu.com 2013 
+ */
+
+using Waguu.Data;
+using Waguu.Web.Binders;
+
+namespace Waguu.Web
 {
     using System;
     using System.Configuration;
@@ -23,10 +30,8 @@
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
-            {
-                configSetter(ConfigurationManager.ConnectionStrings[configName].ConnectionString);
-            });
+            CloudStorageAccount.SetConfigurationSettingPublisher(
+                (configName, configSetter) => configSetter(ConfigurationManager.ConnectionStrings[configName].ConnectionString));
         }
 
         void Application_BeginRequest(object sender, EventArgs e)
