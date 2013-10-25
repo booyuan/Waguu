@@ -27,7 +27,7 @@ var ClipWall;
         };
 
         //replace this with final domain when publish
-        g.h = "http://localhost:22128/";
+        g.h = "http://localhost:919/";
     })(ClipWall.g || (ClipWall.g = {}));
     var g = ClipWall.g;
 
@@ -248,9 +248,6 @@ else if (typeof target.style.MozUserSelect != "undefined")
 
         // data is a serialized json object
         function ajax(url, method, data, success, fail) {
-            // in the server side, a serialized json object is expected from json parameter name
-            data = "json=" + data;
-
             var req;
             if (ClipWall.g.ie6) {
                 req = new ActiveXObject("Microsoft.XMLHTTP");
@@ -288,7 +285,7 @@ else if (typeof target.style.MozUserSelect != "undefined")
             if (method == AjaxMethod.GET) {
                 req.send();
             } else {
-                req.send("json=" + data);
+                req.send(data);
             }
         }
         u.ajax = ajax;
@@ -550,13 +547,21 @@ var ClipWall;
         Panel.prototype.clickSubmit = function () {
             var cnt = ClipWall.g.ge("cnt");
             var data = {
-                ID: "1",
+                ID: new Date().getTime(),
+                Title: ClipWall.g.d.title,
                 URL: ClipWall.g.w.location.href,
-                SECTIONS: [],
-                IMAGES: [],
-                STYLE: null
+                Sections: [],
+                Images: [],
+                Style: null
             };
 
+            // put all content
+            ClipWall.u.eachKid(cnt, function (kid) {
+                data.Sections.push(kid.innerHTML);
+            });
+
+            // to-do: put all captured images here
+            // to-do: analyze all style and put it here
             var postUri = ClipWall.g.h + "api/clip/post";
             ClipWall.u.ajax(postUri, ClipWall.u.AjaxMethod.POST, JSON.stringify(data), function (res) {
                 alert(res);

@@ -98,15 +98,23 @@ module ClipWall {
         private clickSubmit(): void {
             var cnt = g.ge("cnt");
             var data = {
-                ID: "1",
+                ID: new Date().getTime(),
+                Title: g.d.title,
                 URL: g.w.location.href,
-                SECTIONS: [],
-                IMAGES: [],
-                STYLE: null
+                Sections: [],
+                Images: [],
+                Style: null
             };
 
+            // put all content
+            u.eachKid(cnt, (kid) => { data.Sections.push(kid.innerHTML); });
+
+            // to-do: put all captured images here
+
+            // to-do: analyze all style and put it here
+
             var postUri = g.h + "api/clip/post";
-            u.ajax(postUri, u.AjaxMethod.POST, JSON.stringify(data), (res) => { alert(res); }, (fail) => { alert("fail status:" + fail) });
+            u.ajax(postUri, u.AjaxMethod.POST, JSON.stringify(data), (res) => { alert(res); }, (fail) => { alert("fail status:" + fail); });
         }
 
         private getMode(name: string): IClipMode {

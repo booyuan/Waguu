@@ -108,9 +108,6 @@ module ClipWall {
 
         // data is a serialized json object
         export function ajax(url: string, method: AjaxMethod, data?: string, success?: (res: string) => void, fail?: (state: number) => void): void {
-            // in the server side, a serialized json object is expected from json parameter name
-            data = "json=" + data;
-
             var req: XMLHttpRequest;
             if (g.ie6) {
                 req = new ActiveXObject("Microsoft.XMLHTTP");
@@ -148,7 +145,7 @@ module ClipWall {
             if (method == AjaxMethod.GET) {
                 req.send();
             } else {
-                req.send("json=" + data);
+                req.send(data);
             }
         }
     }

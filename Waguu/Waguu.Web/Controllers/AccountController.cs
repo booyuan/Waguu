@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Transactions;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
-using DotNetOpenAuth.AspNet;
-using Microsoft.Web.WebPages.OAuth;
-using WebMatrix.WebData;
-using Waguu.Web.Filters;
-using Waguu.Web.Models;
-using Waguu.Data;
-using Waguu.Data.Exceptions;
-using Waguu.Data.WindowsAzure;
-
-namespace Waguu.Web.Controllers
+﻿namespace Waguu.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Transactions;
+    using System.Web.Mvc;
+    using System.Web.Security;
+    using DotNetOpenAuth.AspNet;
+    using Microsoft.Web.WebPages.OAuth;
+    using Waguu.Data;
+    using Waguu.Data.WindowsAzure;
+    using Waguu.Web.Filters;
+    using Waguu.Web.Models;
+    using WebMatrix.WebData;
+
     [Authorize]
     [InitializeSimpleMembership]
     public class AccountController : Controller
@@ -182,10 +180,8 @@ namespace Waguu.Web.Controllers
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
-                    else
-                    {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                    }
+
+                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
                 }
             }
             else

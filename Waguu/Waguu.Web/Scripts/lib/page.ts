@@ -18,7 +18,7 @@ module ClipWall {
         export var sat = (elem: HTMLElement, name: string, val: string) => elem.setAttribute(name, val);
 
         //replace this with final domain when publish
-        export var h = "http://localhost:22128/";
+        export var h = "http://localhost:919/";
     }
 
     // define events utility

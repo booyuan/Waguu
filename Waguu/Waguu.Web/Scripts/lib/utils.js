@@ -127,9 +127,6 @@ else if (typeof target.style.MozUserSelect != "undefined")
 
         // data is a serialized json object
         function ajax(url, method, data, success, fail) {
-            // in the server side, a serialized json object is expected from json parameter name
-            data = "json=" + data;
-
             var req;
             if (ClipWall.g.ie6) {
                 req = new ActiveXObject("Microsoft.XMLHTTP");
@@ -167,7 +164,7 @@ else if (typeof target.style.MozUserSelect != "undefined")
             if (method == AjaxMethod.GET) {
                 req.send();
             } else {
-                req.send("json=" + data);
+                req.send(data);
             }
         }
         u.ajax = ajax;

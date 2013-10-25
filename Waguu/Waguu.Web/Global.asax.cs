@@ -2,9 +2,6 @@
  * copyright @ waguu.com 2013 
  */
 
-using Waguu.Data;
-using Waguu.Web.Binders;
-
 namespace Waguu.Web
 {
     using System;
@@ -47,8 +44,6 @@ namespace Waguu.Web
                     break;
                 case "/clip":
                     Context.RewritePath("~/content/clip/clip.css");
-                    break;
-                default:
                     break;
             }
         }

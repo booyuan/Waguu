@@ -100,13 +100,21 @@ var ClipWall;
         Panel.prototype.clickSubmit = function () {
             var cnt = ClipWall.g.ge("cnt");
             var data = {
-                ID: "1",
+                ID: new Date().getTime(),
+                Title: ClipWall.g.d.title,
                 URL: ClipWall.g.w.location.href,
-                SECTIONS: [],
-                IMAGES: [],
-                STYLE: null
+                Sections: [],
+                Images: [],
+                Style: null
             };
 
+            // put all content
+            ClipWall.u.eachKid(cnt, function (kid) {
+                data.Sections.push(kid.innerHTML);
+            });
+
+            // to-do: put all captured images here
+            // to-do: analyze all style and put it here
             var postUri = ClipWall.g.h + "api/clip/post";
             ClipWall.u.ajax(postUri, ClipWall.u.AjaxMethod.POST, JSON.stringify(data), function (res) {
                 alert(res);

@@ -27,7 +27,7 @@ var ClipWall;
         };
 
         //replace this with final domain when publish
-        g.h = "http://localhost:22128/";
+        g.h = "http://localhost:919/";
     })(ClipWall.g || (ClipWall.g = {}));
     var g = ClipWall.g;
 
