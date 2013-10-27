@@ -17,7 +17,7 @@ namespace Waguu.Web.Controllers
 
         public ActionResult Index()
         {
-            PostForm();
+            //PostForm();
             ViewBag.Message = "Showing test name: " + this.somethingUseTest.TestName;
 
             return View();

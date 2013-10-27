@@ -248,6 +248,18 @@
             return true;
         }
 
+        private string DecodeMessage(string message)
+        {
+            string result = message;
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                result = result.Replace("%7C", "|");
+            }
+
+            return result;
+        }
+
         private bool CreatePost(CloudQueueMessage msg)
         {
             Trace.TraceInformation("Create post called with {0}", msg.AsString);
@@ -263,9 +275,9 @@
             var owner = parts[0];
             var albumName = parts[1];
             var postid = parts[2];
-            var source = parts[3];
-            var content = parts[4];
-            var rawContent = parts[5];
+            var source = DecodeMessage(parts[3]);
+            var content = DecodeMessage(parts[4]);
+            var rawContent = DecodeMessage(parts[5]);
 
             var repository = new PostRepository();
             var post = repository.GetPostByOwner(owner, albumName, postid);
@@ -292,7 +304,13 @@
 
                 repository.UpdatePostData(post);
 
-                var album = repository.GetAlbumsByOwner(owner).Single(a => a.AlbumId == albumName);
+                var albums = repository.GetAlbumsByOwner(owner);
+                if (albums.Where(a => a.AlbumId == albumName).Count() == 0)
+                {
+                    repository.CreateAlbum(albumName, owner);
+                    albums = repository.GetAlbumsByOwner(owner);
+                }
+                var album = albums.Single(a => a.AlbumId == albumName);
                 if (!album.HasPosts/* || string.IsNullOrEmpty(album.ThumbnailUrl)*/)
                 {
                     // update the album
@@ -307,12 +325,15 @@
                 }
 
                 // parse the tags and save them off
-                var tags = post.RawTags.Split(';')
-                    .Where(s => s.Trim().Length > 0)
-                    .Select(s => new Tag { Name = s.Trim().ToLowerInvariant() })
-                    .ToArray();
+                if (post.RawTags != null)
+                {
+                    var tags = post.RawTags.Split(';')
+                        .Where(s => s.Trim().Length > 0)
+                        .Select(s => new Tag { Name = s.Trim().ToLowerInvariant() })
+                        .ToArray();
 
-                repository.CreateTags(postid, tags);
+                    repository.CreateTags(postid, tags);
+                }
 
                 // TODO, aggregate stats
                 return true;
@@ -328,7 +349,7 @@
             var client = this.storageAccount.CreateCloudBlobClient();
             var container = client.GetContainerReference(owner);
 
-            foreach (Match m in Regex.Matches(content, "<img.+?src=[\"'](.+?)[\"'].+?>", RegexOptions.IgnoreCase))
+            foreach (Match m in Regex.Matches(content, @"<img[^>]*?src\s*=\s*[""']?([^'"" >]+?)[ '""][^>]*?>", RegexOptions.IgnoreCase))
             {
                 string file = m.Groups[1].Value;
                 var fileName = file.Substring(file.LastIndexOf("/", StringComparison.OrdinalIgnoreCase) + 1);
@@ -373,19 +394,28 @@
 
                 var image = Image.FromStream(ms);
 
-                // calculate a 290px thumbnail
+                // calculate a 330px thumbnail
                 int width;
                 int height;
 
-                width = 290;
-                height = 290 * image.Height / image.Width;
+                width = 330;
+                height = 330 * image.Height / image.Width;
 
                 // generate the thumb
-                var thumb = image.GetThumbnailImage(
+                /* this part does not work well, image quality too low, so used another method which uses DrawImage
+                 * var thumb = image.GetThumbnailImage(
                     width,
                     height,
                     () => false,
-                    IntPtr.Zero);
+                    IntPtr.Zero);*/
+                Image thumb = new Bitmap(width, height);
+                using (Graphics gr = Graphics.FromImage(thumb))
+                {
+                    gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                    gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    gr.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                    gr.DrawImage(image, new Rectangle(0, 0, width, height));
+                }
 
                 // save it off to blob storage
                 using (var thumbStream = new MemoryStream())

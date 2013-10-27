@@ -112,7 +112,19 @@
             // post a message to the queue so it can process tags and the sizing operations
             this.SendToQueue(
                 Constants.PostQueue,
-                string.Format(CultureInfo.InvariantCulture, "{0}|{1}|{2}|{3}|{4}|{5}", post.Owner, post.AlbumId, post.PostId, post.Source, post.Content, post.RawContent));
+                string.Format(CultureInfo.InvariantCulture, "{0}|{1}|{2}|{3}|{4}|{5}", post.Owner, post.AlbumId, post.PostId, EncodeMessage(post.Source), EncodeMessage(post.Content), EncodeMessage(post.RawContent)));
+        }
+
+        private string EncodeMessage(string message)
+        {
+            string result = message;
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                result = result.Replace("|", "%7C");
+            }
+
+            return result;
         }
 
         public void UpdatePostData(Post post)
